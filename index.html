@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FusiLite Labs</title>
+<meta name="description" content="FusiLite Labs makes small, private browser tools that run on your own computer.">
+<link rel="icon" href="cuewoven/icon.png">
+<style>
+  :root { --bg:#faf8f4; --fg:#1d1b18; --muted:#6b655c; --line:#e6e0d6; --card:#fff; --accent:#3d5a80; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#151412; --fg:#ece8e1; --muted:#a39d93; --line:#2e2b27; --card:#1d1b19; --accent:#8fb3e0; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:72px 20px 48px; }
+  h1 { font-size:2.4rem; letter-spacing:-.02em; margin:0 0 8px; }
+  h1 span { color:var(--accent); }
+  .lede { color:var(--muted); font-size:1.15rem; margin:0 0 56px; max-width:34em; }
+  h2 { font-size:.8rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin:0 0 16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px; }
+  .head { display:flex; gap:16px; align-items:center; margin-bottom:12px; }
+  .head img { width:56px; height:56px; border-radius:12px; }
+  .head h3 { margin:0; font-size:1.35rem; }
+  .head p { margin:0; color:var(--muted); font-size:.95rem; }
+  .shot { width:100%; height:auto; border-radius:10px; border:1px solid var(--line); margin:16px 0; }
+  .links { display:flex; flex-wrap:wrap; gap:8px 20px; }
+  a { color:var(--accent); }
+  footer { color:var(--muted); font-size:.9rem; margin-top:56px; border-top:1px solid var(--line); padding-top:20px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Fusi<span>Lite</span> Labs</h1>
+  <p class="lede">Small, private browser tools. They run on your own computer, with no accounts and no tracking.</p>
+
+  <h2>Extensions</h2>
+  <article class="card">
+    <div class="head">
+      <img src="cuewoven/icon.png" alt="">
+      <div>
+        <h3>CueWoven</h3>
+        <p>Search your history from a vague memory · Microsoft Edge · Beta</p>
+      </div>
+    </div>
+    <p>Remember a video or article but not its name? Describe what you remember — something that was said, something you saw, or roughly when — and CueWoven finds it. Your library is saved and searched on your computer with local AI models.</p>
+    <img class="shot" src="cuewoven/search.png" width="1280" height="800" alt="CueWoven search results for a described video moment">
+    <div class="links">
+      <a href="https://github.com/eric-chenCS/CueWoven">Source code</a>
+      <a href="cuewoven/privacy/">Privacy policy</a>
+      <a href="https://github.com/eric-chenCS/CueWoven/issues">Report a problem</a>
+    </div>
+  </article>
+
+  <footer>Contact: <a href="mailto:support@fusilite.com">support@fusilite.com</a></footer>
+</main>
+</body>
+</html>
