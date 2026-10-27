@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FusiLite Labs</title>
-<meta name="description" content="FusiLite Labs makes small, private browser tools that run on your own computer.">
+<meta name="description" content="FusiLite Labs makes small, private browser tools with no accounts and no tracking.">
 <link rel="icon" href="cuewoven/icon.png">
 <style>
   :root { --bg:#faf8f4; --fg:#1d1b18; --muted:#6b655c; --line:#e6e0d6; --card:#fff; --accent:#3d5a80; }
@@ -25,6 +25,7 @@
   .head p { margin:0; color:var(--muted); font-size:.95rem; }
   .shot { width:100%; height:auto; border-radius:10px; border:1px solid var(--line); margin:16px 0; }
   .links { display:flex; flex-wrap:wrap; gap:8px 20px; }
+  .card + .card { margin-top:24px; }
   a { color:var(--accent); }
   footer { color:var(--muted); font-size:.9rem; margin-top:56px; border-top:1px solid var(--line); padding-top:20px; }
 </style>
@@ -32,7 +33,7 @@
 <body>
 <main>
   <h1>Fusi<span>Lite</span> Labs</h1>
-  <p class="lede">Small, private browser tools. They run on your own computer, with no accounts and no tracking.</p>
+  <p class="lede">Small, private browser tools with no accounts and no tracking.</p>
 
   <h2>Extensions</h2>
   <article class="card">
@@ -49,6 +50,22 @@
       <a href="https://github.com/eric-chenCS/CueWoven">Source code</a>
       <a href="cuewoven/privacy/">Privacy policy</a>
       <a href="mailto:support@fusilite.com?subject=CueWoven%20problem">Report a problem</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="head">
+      <img src="partfinder/icon.png" alt="">
+      <div>
+        <h3>Part Finder</h3>
+        <p>Find the next part of a YouTube series · Microsoft Edge · Coming soon</p>
+      </div>
+    </div>
+    <p>Watching Part 3 and can't find Part 4? Part Finder shows the next part of the YouTube series you're watching, with one click on the video page. Full timeline finds every part in order, including ones you missed, and works with Shorts, numbered episodes and series that only say "update".</p>
+    <img class="shot" src="partfinder/popup.png" width="1280" height="800" alt="Part Finder in light and dark themes, showing Part 5 of a cabin-building series with a Watch button">
+    <div class="links">
+      <a href="partfinder/privacy/">Privacy policy</a>
+      <a href="mailto:support@fusilite.com?subject=Part%20Finder%20problem">Report a problem</a>
     </div>
   </article>
 
