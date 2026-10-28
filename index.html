@@ -5,71 +5,207 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FusiLite Labs</title>
 <meta name="description" content="FusiLite Labs makes small, private browser tools with no accounts and no tracking.">
+<meta name="theme-color" content="#ffd34e" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1546" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="cuewoven/icon.png">
+<link rel="preload" href="fonts/shrikhand-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  :root { --bg:#faf8f4; --fg:#1d1b18; --muted:#6b655c; --line:#e6e0d6; --card:#fff; --accent:#3d5a80; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#151412; --fg:#ece8e1; --muted:#a39d93; --line:#2e2b27; --card:#1d1b19; --accent:#8fb3e0; }
+  @font-face { font-family:"Shrikhand"; src:url(fonts/shrikhand-latin-400-normal.woff2) format("woff2"); font-display:swap; }
+  @font-face { font-family:"Atkinson Hyperlegible Next"; src:url(fonts/atkinson-hyperlegible-next-latin-400-normal.woff2) format("woff2"); font-weight:400; font-display:swap; }
+  @font-face { font-family:"Atkinson Hyperlegible Next"; src:url(fonts/atkinson-hyperlegible-next-latin-700-normal.woff2) format("woff2"); font-weight:700; font-display:swap; }
+
+  :root {
+    --sheet:#ffd34e; --ink:#1d1648; --ink-soft:#3e356f; --cut:rgba(29,22,72,.32); --pop:#b8341b;
+    --paper:#ffffff; --underside:#ece8f6;
+    --cw:#2350d8; --cw-deep:#1a3aa6; --cw-tag:#ffd23f;
+    --pf:#3b2357; --pf-deep:#2a1840; --pf-tag:#f2aa3c;
+    --lift:0 14px 28px rgba(29,22,72,.28), 0 3px 6px rgba(29,22,72,.18);
+    --rest:0 6px 14px rgba(29,22,72,.22), 0 1px 3px rgba(29,22,72,.16);
+    --display:"Shrikhand", "Atkinson Hyperlegible Next", sans-serif;
+    --text:"Atkinson Hyperlegible Next", system-ui, sans-serif;
+    color-scheme:light;
   }
+  @media (prefers-color-scheme: dark) {
+    :root { --sheet:#1a1546; --ink:#fff1c9; --ink-soft:#d9cfee; --cut:rgba(255,211,78,.38); --pop:#ffd34e;
+      --lift:0 16px 32px rgba(0,0,0,.5), 0 3px 8px rgba(0,0,0,.35); --rest:0 6px 16px rgba(0,0,0,.42), 0 1px 3px rgba(0,0,0,.3); color-scheme:dark; }
+  }
+
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
-  main { max-width:760px; margin:0 auto; padding:72px 20px 48px; }
-  h1 { font-size:2.4rem; letter-spacing:-.02em; margin:0 0 8px; }
-  h1 span { color:var(--accent); }
-  .lede { color:var(--muted); font-size:1.15rem; margin:0 0 56px; max-width:34em; }
-  h2 { font-size:.8rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin:0 0 16px; }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px; }
-  .head { display:flex; gap:16px; align-items:center; margin-bottom:12px; }
-  .head img { width:56px; height:56px; border-radius:12px; }
-  .head h3 { margin:0; font-size:1.35rem; }
-  .head p { margin:0; color:var(--muted); font-size:.95rem; }
-  .shot { width:100%; height:auto; border-radius:10px; border:1px solid var(--line); margin:16px 0; }
-  .links { display:flex; flex-wrap:wrap; gap:8px 20px; }
-  .card + .card { margin-top:24px; }
-  a { color:var(--accent); }
-  footer { color:var(--muted); font-size:.9rem; margin-top:56px; border-top:1px solid var(--line); padding-top:20px; }
+  html { background:var(--sheet); scrollbar-color:var(--ink-soft) var(--sheet); }
+  body { margin:0; background:var(--sheet); color:var(--ink); font:400 1.0625rem/1.6 var(--text); -webkit-font-smoothing:antialiased; }
+  ::selection { background:var(--ink); color:var(--sheet); }
+  a { color:inherit; text-decoration-thickness:2px; text-underline-offset:.22em; }
+  a:hover { text-decoration-thickness:3px; }
+  :focus-visible { outline:3px solid var(--ink); outline-offset:4px; border-radius:6px; }
+  img { display:block; max-width:100%; height:auto; }
+
+  .wrap { width:min(1160px, 100% - 32px); margin-inline:auto; }
+
+  /* top: a small printed label and the one contact address */
+  .top { display:flex; justify-content:space-between; align-items:center; gap:16px; padding-block:22px; }
+  .mark { font:1.3rem/1 var(--display); white-space:nowrap; text-decoration:none; background:var(--paper); color:#1d1648; padding:8px 14px 10px; border-radius:12px; box-shadow:var(--rest); rotate:-2deg; }
+  .top a.mail { font-weight:700; }
+
+  /* first viewport */
+  .hero { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:clamp(24px,5vw,72px); align-items:center; padding-block:clamp(28px,6vw,72px) clamp(56px,8vw,104px); }
+  h1 { font:clamp(3rem, 7.4vw, 6rem)/.98 var(--display); margin:0; text-wrap:balance; }
+  .then { display:block; font:clamp(1.8rem, 3.6vw, 2.9rem)/1.1 var(--display); color:var(--pop); margin-top:.35em; }
+  .me { font-size:clamp(1.1rem, 1.6vw, 1.3rem); max-width:31em; margin:28px 0 30px; color:var(--ink-soft); }
+  .me strong { color:var(--ink); }
+
+  /* plain printed label stickers for facts */
+  .labels { display:flex; flex-wrap:wrap; gap:12px 14px; list-style:none; padding:0; margin:0; }
+  .labels li { background:var(--paper); color:#1d1648; font-weight:700; font-size:.95rem; padding:7px 14px; border-radius:10px; box-shadow:var(--rest); }
+  .labels li:nth-child(odd) { rotate:-1.5deg; } .labels li:nth-child(even) { rotate:1.2deg; }
+
+  /* the stickers: vinyl inside a white die-cut border, sitting in a printed kiss-cut outline */
+  .stickers { display:grid; gap:28px; justify-items:center; }
+  .slot { position:relative; width:min(100%, 420px); border:2px dashed var(--cut); border-radius:40px; padding:10px; }
+  .slot:nth-child(1) { rotate:-3.5deg; }
+  .slot:nth-child(2) { rotate:2.5deg; margin-left:clamp(0px,6vw,64px); }
+  .sticker { position:relative; display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center; text-decoration:none;
+    background:var(--vinyl); color:#fff; border:10px solid var(--paper); border-radius:30px; padding:20px 22px; box-shadow:var(--rest);
+    transition:translate .35s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1); }
+  .sticker img { width:76px; height:76px; border-radius:18px; box-shadow:0 0 0 4px var(--paper); }
+  .sticker b { display:block; font:1.65rem/1.05 var(--display); font-weight:400; }
+  .sticker span { display:block; margin-top:4px; line-height:1.35; }
+  .sticker em { display:inline-block; font-style:normal; font-weight:700; font-size:.82rem; letter-spacing:.01em; margin-top:10px; padding:3px 10px; border-radius:999px; background:var(--tag); color:#1d1648; }
+  .cw { --vinyl:var(--cw); --tag:var(--cw-tag); }
+  .pf { --vinyl:var(--pf); --tag:var(--pf-tag); }
+  /* the peel: the corner folds back, showing the sticker's white underside over the sheet */
+  .sticker::after { content:""; position:absolute; right:-10px; bottom:-10px; width:0; height:0; border-bottom-right-radius:30px;
+    background:linear-gradient(315deg, var(--sheet) 0 50%, var(--underside) 50% 100%); box-shadow:-3px -3px 6px rgba(29,22,72,.18);
+    transition:width .35s cubic-bezier(.16,1,.3,1), height .35s cubic-bezier(.16,1,.3,1); }
+  .sticker:hover, .sticker:focus-visible { translate:0 -6px; box-shadow:var(--lift); }
+  .sticker:hover::after, .sticker:focus-visible::after { width:54px; height:54px; }
+  .sticker:focus-visible { outline-offset:8px; }
+
+  /* each tool, peeled off at full size */
+  .tool { position:relative; display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(24px,4vw,56px); align-items:center;
+    background:var(--vinyl); color:#fff; border:14px solid var(--paper); border-radius:40px; padding:clamp(24px,4vw,52px); box-shadow:var(--rest); margin-bottom:clamp(48px,7vw,88px); }
+  .tool::after { content:""; position:absolute; right:-14px; top:-14px; width:64px; height:64px; border-top-right-radius:40px;
+    background:linear-gradient(225deg, var(--sheet) 0 50%, var(--underside) 50% 100%); box-shadow:-3px 3px 6px rgba(29,22,72,.2); }
+  .tool h2 { font:clamp(2.4rem,4.6vw,3.6rem)/1 var(--display); margin:0 0 6px; }
+  .tool .job { font-size:1.25rem; font-weight:700; margin:0 0 12px; }
+  .tool p { margin:0 0 18px; max-width:38em; color:rgba(255,255,255,.88); }
+  .tool .labels { margin:24px 0 26px; }
+  .tool .labels li { box-shadow:none; }
+  .links { display:flex; flex-wrap:wrap; gap:12px 22px; font-weight:700; }
+  .links a { color:#fff; }
+  .shot { border-radius:16px; box-shadow:0 18px 36px rgba(0,0,0,.28); }
+  .pf .shot { order:-1; }
+  .status { display:inline-block; font-weight:700; font-size:.88rem; padding:3px 12px; border-radius:999px; background:var(--tag); color:#1d1648; margin-bottom:20px; }
+
+  .foot { padding-block:8px 56px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 32px; color:var(--ink-soft); }
+  .foot strong { color:var(--ink); }
+
+  /* the one authored moment: stickers are pressed onto the sheet once */
+  @media (prefers-reduced-motion: no-preference) {
+    .slot .sticker { animation:press .7s cubic-bezier(.16,1,.3,1) both; }
+    .slot:nth-child(2) .sticker { animation-delay:.09s; }
+    @keyframes press { from { scale:1.06; box-shadow:var(--lift); } to { scale:1; box-shadow:var(--rest); } }
+  }
+  @media (prefers-reduced-motion: reduce) { .sticker, .sticker::after { transition:none; } }
+
+  @media (max-width: 860px) {
+    .hero, .tool { grid-template-columns:1fr; }
+    .pf .shot { order:0; }
+    .slot:nth-child(2) { margin-left:0; }
+    /* crop the store images to the product itself on narrow screens */
+    .shot { object-fit:cover; }
+    .cw .shot { aspect-ratio:3/4; object-position:100% 50%; }
+    .pf .shot { aspect-ratio:7/8; object-position:86% 50%; }
+    .tool { border-width:10px; border-radius:30px; }
+    .tool::after { right:-10px; top:-10px; width:44px; height:44px; border-top-right-radius:30px; }
+  }
+  @media (max-width: 420px) {
+    .sticker { grid-template-columns:1fr; gap:12px; }
+    .sticker img { width:64px; height:64px; }
+    .mark { font-size:1.1rem; }
+    .top a.mail { font-size:.95rem; }
+  }
 </style>
 </head>
 <body>
+<header class="wrap top">
+  <a class="mark" href="/">FusiLite Labs</a>
+  <a class="mail" href="mailto:support@fusilite.com">support@fusilite.com</a>
+</header>
+
 <main>
-  <h1>Fusi<span>Lite</span> Labs</h1>
-  <p class="lede">Small, private browser tools with no accounts and no tracking.</p>
-
-  <h2>Extensions</h2>
-  <article class="card">
-    <div class="head">
-      <img src="cuewoven/icon.png" alt="">
-      <div>
-        <h3>CueWoven</h3>
-        <p>Search your history from a vague memory · Microsoft Edge · Beta</p>
+  <section class="wrap hero" aria-labelledby="headline">
+    <div>
+      <h1 id="headline">Small tools for better days. <span class="then">One at a time.</span></h1>
+      <p class="me">I'm <strong>Eric</strong>. I make little browser extensions that each fix one annoying thing, and I keep them private: they work without an account and never track you.</p>
+      <ul class="labels" aria-label="Every tool">
+        <li>No account</li>
+        <li>No tracking</li>
+        <li>One job each</li>
+      </ul>
+    </div>
+    <div class="stickers">
+      <div class="slot">
+        <a class="sticker cw" href="#cuewoven">
+          <img src="cuewoven/icon.png" width="128" height="128" alt="">
+          <div><b>CueWoven</b><span>Find that video or article from a vague memory.</span><em>Beta for Microsoft Edge</em></div>
+        </a>
+      </div>
+      <div class="slot">
+        <a class="sticker pf" href="#partfinder">
+          <img src="partfinder/icon.png" width="128" height="128" alt="">
+          <div><b>Part Finder</b><span>Jump to the next part of a YouTube series.</span><em>Coming soon to Edge</em></div>
+        </a>
       </div>
     </div>
-    <p>Remember a video or article but not its name? Describe what you remember, like something that was said, something you saw, or roughly when, and CueWoven finds it. Your library is saved and searched on your computer with local AI models.</p>
-    <img class="shot" src="cuewoven/search.png" width="1280" height="800" alt="CueWoven search results for a described video moment">
-    <div class="links">
-      <a href="https://github.com/eric-chenCS/CueWoven">Source code</a>
-      <a href="cuewoven/privacy/">Privacy policy</a>
-      <a href="mailto:support@fusilite.com?subject=CueWoven%20problem">Report a problem</a>
-    </div>
-  </article>
+  </section>
 
-  <article class="card">
-    <div class="head">
-      <img src="partfinder/icon.png" alt="">
+  <div class="wrap">
+    <article class="tool cw" id="cuewoven" aria-labelledby="cw-name">
       <div>
-        <h3>Part Finder</h3>
-        <p>Find the next part of a YouTube series · Microsoft Edge · Coming soon</p>
+        <h2 id="cw-name">CueWoven</h2>
+        <p class="job">Search your history from a vague memory.</p>
+        <span class="status">Beta · Microsoft Edge</span>
+        <p>Remember a video or article but not its name? Describe what you remember, like something that was said, something you saw, or roughly when, and CueWoven finds it.</p>
+        <p>Your library is saved and searched on your computer with local AI models.</p>
+        <ul class="labels" aria-label="CueWoven facts">
+          <li>Runs on your computer</li>
+          <li>No account</li>
+          <li>Source on GitHub</li>
+        </ul>
+        <div class="links">
+          <a href="https://github.com/eric-chenCS/CueWoven">Source code</a>
+          <a href="cuewoven/privacy/">Privacy policy</a>
+          <a href="mailto:support@fusilite.com?subject=CueWoven%20problem">Report a problem</a>
+        </div>
       </div>
-    </div>
-    <p>Watching Part 3 and can't find Part 4? Part Finder shows the next part of the YouTube series you're watching, with one click on the video page. Full timeline finds every part in order, including ones you missed, and works with Shorts, numbered episodes and series that only say "update".</p>
-    <img class="shot" src="partfinder/popup.png" width="1280" height="800" alt="Part Finder in light and dark themes, showing Part 5 of a cabin-building series with a Watch button">
-    <div class="links">
-      <a href="partfinder/privacy/">Privacy policy</a>
-      <a href="mailto:support@fusilite.com?subject=Part%20Finder%20problem">Report a problem</a>
-    </div>
-  </article>
+      <img class="shot" src="cuewoven/search.png" width="1280" height="800" loading="lazy" alt="CueWoven search results for a described video moment">
+    </article>
 
-  <footer>Contact: <a href="mailto:support@fusilite.com">support@fusilite.com</a></footer>
+    <article class="tool pf" id="partfinder" aria-labelledby="pf-name">
+      <div>
+        <h2 id="pf-name">Part Finder</h2>
+        <p class="job">Find the next part of a YouTube series.</p>
+        <span class="status">Coming soon · Microsoft Edge</span>
+        <p>Watching Part 3 and can't find Part 4? Part Finder shows the next part of the series you're watching, with one click on the video page.</p>
+        <p>Full timeline finds every part in order, including ones you missed, and works with Shorts, numbered episodes and series that only say "update".</p>
+        <ul class="labels" aria-label="Part Finder facts">
+          <li>No account</li>
+          <li>Free to use</li>
+          <li>Official YouTube API</li>
+        </ul>
+        <div class="links">
+          <a href="partfinder/privacy/">Privacy policy</a>
+          <a href="mailto:support@fusilite.com?subject=Part%20Finder%20problem">Report a problem</a>
+        </div>
+      </div>
+      <img class="shot" src="partfinder/popup.png" width="1280" height="800" loading="lazy" alt="Part Finder in light and dark themes, showing Part 5 of a cabin-building series with a Watch button">
+    </article>
+  </div>
 </main>
+
+<footer class="wrap foot">
+  <p><strong>FusiLite Labs</strong> is one person making small, private browser tools.</p>
+  <p>Questions, bugs or ideas: <a href="mailto:support@fusilite.com">support@fusilite.com</a></p>
+</footer>
 </body>
 </html>
