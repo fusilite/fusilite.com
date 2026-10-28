@@ -25,9 +25,9 @@ Made by one developer, not a company. Tools do one job, need no account, and do 
 
 ## Capabilities and Constraints
 
-- CueWoven: Microsoft Edge, beta. Describe a vague memory of a video or article and it finds it; library saved and searched locally with local AI models. Source: https://github.com/eric-chenCS/CueWoven
+- CueWoven: on the Chrome Web Store (https://chromewebstore.google.com/detail/cuewoven-search-your-hist/pmckegghofkmajmdnlcnallgbgpgonij); Microsoft Edge beta. Describe a vague memory of a video or article and it finds it; library saved and searched locally with local AI models. Source: https://github.com/eric-chenCS/CueWoven
 - Part Finder: Microsoft Edge, coming soon (store submission pending). Finds the next part of the YouTube series you are watching; Full timeline lists every part in order. Uses YouTube API Services (official YouTube Data API) via a free shared server or the user's own key. Source repo is private.
-- Store links do not exist yet for either tool; do not invent them. When a listing goes live, swap the status for the link.
+- CueWoven has a Chrome Web Store link (above). Part Finder has no store link yet; do not invent one. When its listing goes live, swap the status for the link.
 - Support: support@fusilite.com (forwards to the owner).
 
 ## Brand Commitments

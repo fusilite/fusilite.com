@@ -91,7 +91,10 @@
   .tool .labels { margin:24px 0 26px; }
   .tool .labels li { box-shadow:none; }
   .links { display:flex; flex-wrap:wrap; gap:12px 22px; font-weight:700; }
+  .links { align-items:center; }
   .links a { color:#fff; }
+  .links a.get { background:var(--paper); color:#1d1648; text-decoration:none; padding:10px 20px; border-radius:999px; box-shadow:0 4px 10px rgba(0,0,0,.2); transition:translate .25s cubic-bezier(.16,1,.3,1); }
+  .links a.get:hover { translate:0 -2px; }
   .shot { border-radius:16px; box-shadow:0 18px 36px rgba(0,0,0,.28); }
   .pf .shot { order:-1; }
   .status { display:inline-block; font-weight:700; font-size:.88rem; padding:3px 12px; border-radius:999px; background:var(--tag); color:#1d1648; margin-bottom:20px; }
@@ -145,9 +148,9 @@
     </div>
     <div class="stickers">
       <div class="slot">
-        <a class="sticker cw" href="#cuewoven">
+        <a class="sticker cw" href="https://chromewebstore.google.com/detail/cuewoven-search-your-hist/pmckegghofkmajmdnlcnallgbgpgonij">
           <img src="cuewoven/icon.png" width="128" height="128" alt="">
-          <div><b>CueWoven</b><span>Find that video or article from a vague memory.</span><em>Beta for Microsoft Edge</em></div>
+          <div><b>CueWoven</b><span>Find that video or article from a vague memory.</span><em>Get it for Chrome</em></div>
         </a>
       </div>
       <div class="slot">
@@ -164,7 +167,7 @@
       <div>
         <h2 id="cw-name">CueWoven</h2>
         <p class="job">Search your history from a vague memory.</p>
-        <span class="status">Beta · Microsoft Edge</span>
+        <span class="status">Chrome Web Store · Edge beta</span>
         <p>Remember a video or article but not its name? Describe what you remember, like something that was said, something you saw, or roughly when, and CueWoven finds it.</p>
         <p>Your library is saved and searched on your computer with local AI models.</p>
         <ul class="labels" aria-label="CueWoven facts">
@@ -173,6 +176,7 @@
           <li>Source on GitHub</li>
         </ul>
         <div class="links">
+          <a class="get" href="https://chromewebstore.google.com/detail/cuewoven-search-your-hist/pmckegghofkmajmdnlcnallgbgpgonij">Add to Chrome</a>
           <a href="https://github.com/eric-chenCS/CueWoven">Source code</a>
           <a href="cuewoven/privacy/">Privacy policy</a>
           <a href="mailto:support@fusilite.com?subject=CueWoven%20problem">Report a problem</a>
